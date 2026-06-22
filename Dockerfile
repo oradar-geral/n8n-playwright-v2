@@ -21,7 +21,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g --omit=dev n8n --ignore-scripts && \
-    npm install -g n8n-nodes-playwright && \
     npm rebuild --prefix=/usr/local/lib/node_modules/n8n sqlite3 && \
     rm -rf /root/.npm
 
