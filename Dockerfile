@@ -17,8 +17,8 @@ RUN apt-get update && \
         curl \
         tzdata \
         fontconfig \
-        openssl \
-    && rm -rf /var/lib/apt/lists/*
+        openssl && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g --omit=dev n8n --ignore-scripts && \
     npm rebuild --prefix=/usr/local/lib/node_modules/n8n sqlite3 && \
@@ -31,7 +31,7 @@ ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
 
 RUN mkdir -p /home/node/.n8n && \
-    useradd -m node && \
+    chmod -R 777 /home/node/.n8n && \
     chown -R node:node /home/node && \
     chown -R node:node /root/.cache/ms-playwright || true
 
