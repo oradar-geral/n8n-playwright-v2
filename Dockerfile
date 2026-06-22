@@ -2,11 +2,13 @@ FROM n8nio/n8n:latest
 
 USER root
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     chromium \
-    fonts-freefont-ttf \
+    nss \
+    freetype \
+    harfbuzz \
     ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    ttf-freefont
 
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 ENV CHROME_PATH=/usr/bin/chromium
